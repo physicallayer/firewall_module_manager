@@ -33,6 +33,7 @@ public:
     QLabel *label_2;
     QPushButton *pb_getRule_2;
     QPushButton *pb_setRule_2;
+    QPushButton *pb_load;
 
     void setupUi(QWidget *Widget)
     {
@@ -54,7 +55,7 @@ public:
         list_Rule->setGeometry(QRect(10, 50, 491, 411));
         pb_getLog = new QPushButton(Widget);
         pb_getLog->setObjectName(QStringLiteral("pb_getLog"));
-        pb_getLog->setGeometry(QRect(520, 220, 101, 51));
+        pb_getLog->setGeometry(QRect(520, 180, 101, 51));
         QFont font1;
         font1.setPointSize(13);
         font1.setStrikeOut(false);
@@ -85,6 +86,12 @@ public:
         pb_setRule_2->setObjectName(QStringLiteral("pb_setRule_2"));
         pb_setRule_2->setGeometry(QRect(940, 490, 101, 61));
         pb_setRule_2->setFont(font);
+        pb_load = new QPushButton(Widget);
+        pb_load->setObjectName(QStringLiteral("pb_load"));
+        pb_load->setGeometry(QRect(520, 300, 101, 51));
+        QFont font3;
+        font3.setPointSize(15);
+        pb_load->setFont(font3);
 
         retranslateUi(Widget);
 
@@ -101,6 +108,7 @@ public:
         label_2->setText(QApplication::translate("Widget", "OUTBOUND", Q_NULLPTR));
         pb_getRule_2->setText(QApplication::translate("Widget", "GET Rule", Q_NULLPTR));
         pb_setRule_2->setText(QApplication::translate("Widget", "SET Rule", Q_NULLPTR));
+        pb_load->setText(QApplication::translate("Widget", "LOAD", Q_NULLPTR));
     } // retranslateUi
 
 };
