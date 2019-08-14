@@ -22,7 +22,7 @@ void Widget::on_pb_getRule_clicked()
     char* str;
     int row = 0;
     QString qstr;
-    fp = fopen("./in.rule", "r");
+    fp = fopen("/etc/firewall/in.rule", "r");
     if(fp == NULL){
         perror("File Open ERROR!");
         ED = new error_Dialog(this);
@@ -47,7 +47,7 @@ void Widget::on_pb_setRule_clicked()
 void Widget::on_pb_getLog_clicked()
 {
     FILE* fp = NULL;
-    fp = fopen("./log.txt", "r");
+    fp = fopen("/etc/firewall/pass.log", "r");
     if(fp == NULL){
         perror("File Open ERROR!");
     }
@@ -65,7 +65,7 @@ void Widget::on_pb_getRule_2_clicked()
     char* str;
     int row = 0;
     QString qstr;
-    fp = fopen("./out.rule", "r");
+    fp = fopen("/etc/firewall/out.rule", "r");
     if(fp == NULL){
         perror("File Open ERROR!");
         ED = new error_Dialog(this);

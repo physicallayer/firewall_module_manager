@@ -16,7 +16,7 @@ set_Outbound_Dialog::~set_Outbound_Dialog()
 void set_Outbound_Dialog::on_pushButton_clicked()
 {
     FILE* fp = NULL; int a = 0; int count = 0;
-    if((fp = fopen("./out.rule", "a+")) == NULL){
+    if((fp = fopen("/etc/firewall/out.rule", "a+")) == NULL){
         ED = new error_Dialog(this);
         ED->show();
         perror("FILE out.rule open ERROR");
