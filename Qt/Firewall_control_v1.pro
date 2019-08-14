@@ -44,3 +44,6 @@ FORMS += \
     set_outbound_dialog.ui \
     set_inbound_dialog.ui \
     error_dialog.ui
+
+RESOURCES += \
+    button_image.qrc

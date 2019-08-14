@@ -9,6 +9,7 @@
 #include "log_dialog.h"
 #include "set_inbound_dialog.h"
 #include "set_outbound_dialog.h"
+#include "error_dialog.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,6 +23,7 @@ class Widget;
 class Widget : public QWidget
 {
     Q_OBJECT
+    error_Dialog* ED;
 
 public:
     explicit Widget(QWidget *parent = 0);

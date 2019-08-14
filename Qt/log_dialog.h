@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "error_dialog.h"
 
 #define BUF_MAX_SIZE 100
 
@@ -16,6 +17,7 @@ class Log_Dialog;
 class Log_Dialog : public QDialog
 {
     Q_OBJECT
+    error_Dialog* ED;
 
 public:
     explicit Log_Dialog(QWidget *parent = 0);

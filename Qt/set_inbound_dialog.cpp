@@ -16,7 +16,7 @@ set_Inbound_Dialog::~set_Inbound_Dialog()
 void set_Inbound_Dialog::on_pushButton_clicked()
 {
     FILE* fp = NULL; int a = 0; int count = 0; int count_all = 0;
-    if((fp = fopen("./in.rule", "a")) == NULL){
+    if((fp = fopen("./in.rule", "a+")) == NULL){
         ED = new error_Dialog(this);
         ED->show();
         perror("FILE in.rule open ERROR");

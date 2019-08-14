@@ -25,14 +25,17 @@ void Widget::on_pb_getRule_clicked()
     fp = fopen("./in.rule", "r");
     if(fp == NULL){
         perror("File Open ERROR!");
-        exit(0);
+        ED = new error_Dialog(this);
+        ED->show();
     }
-    while((str = fgets(buf, sizeof(buf), fp)) != NULL){
-        qstr = QString(buf);
-        ui->list_Rule->insertItem(row, qstr);
-    }
+    else{
+        while((str = fgets(buf, sizeof(buf), fp)) != NULL){
+            qstr = QString(buf);
+            ui->list_Rule->insertItem(row, qstr);
+        }
 
-    fclose(fp);
+        fclose(fp);
+    }
 }
 
 void Widget::on_pb_setRule_clicked()
@@ -43,8 +46,15 @@ void Widget::on_pb_setRule_clicked()
 
 void Widget::on_pb_getLog_clicked()
 {
-    logD = new Log_Dialog(this);
-    logD->show();
+    FILE* fp = NULL;
+    fp = fopen("./log.txt", "r");
+    if(fp == NULL){
+        perror("File Open ERROR!");
+    }
+    else{
+        logD = new Log_Dialog(this);
+        logD->show();
+    }
 }
 
 void Widget::on_pb_getRule_2_clicked()
@@ -58,14 +68,17 @@ void Widget::on_pb_getRule_2_clicked()
     fp = fopen("./out.rule", "r");
     if(fp == NULL){
         perror("File Open ERROR!");
-        exit(0);
+        ED = new error_Dialog(this);
+        ED->show();
     }
-    while((str = fgets(buf, sizeof(buf), fp)) != NULL){
-        qstr = QString(buf);
-        ui->list_Rule2->insertItem(row, qstr);
-    }
+    else{
+        while((str = fgets(buf, sizeof(buf), fp)) != NULL){
+            qstr = QString(buf);
+            ui->list_Rule2->insertItem(row, qstr);
+        }
 
-    fclose(fp);
+        fclose(fp);
+    }
 }
 
 void Widget::on_pb_setRule_2_clicked()

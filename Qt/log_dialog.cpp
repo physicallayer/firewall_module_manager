@@ -14,7 +14,7 @@ Log_Dialog::Log_Dialog(QWidget *parent) :
     fp = fopen("./log.txt", "r");
     if(fp == NULL){
         perror("File Open ERROR!");
-        exit(0);
+        close();
     }
     while((str = fgets(buf, sizeof(buf), fp)) != NULL){
         qstr = QString(buf);
