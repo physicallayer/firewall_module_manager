@@ -60,6 +60,8 @@ public:
         font1.setStrikeOut(false);
         pb_getLog->setFont(font1);
         pb_getLog->setMouseTracking(false);
+        pb_getLog->setAutoFillBackground(false);
+        pb_getLog->setStyleSheet(QStringLiteral(""));
         list_Rule2 = new QListWidget(Widget);
         list_Rule2->setObjectName(QStringLiteral("list_Rule2"));
         list_Rule2->setGeometry(QRect(640, 50, 511, 411));

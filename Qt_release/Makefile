@@ -55,7 +55,8 @@ SOURCES       = ../Firewall_control_v1/main.cpp \
 		../Firewall_control_v1/log_dialog.cpp \
 		../Firewall_control_v1/set_outbound_dialog.cpp \
 		../Firewall_control_v1/set_inbound_dialog.cpp \
-		../Firewall_control_v1/error_dialog.cpp moc_widget.cpp \
+		../Firewall_control_v1/error_dialog.cpp qrc_button_image.cpp \
+		moc_widget.cpp \
 		moc_log_dialog.cpp \
 		moc_set_outbound_dialog.cpp \
 		moc_set_inbound_dialog.cpp \
@@ -66,6 +67,7 @@ OBJECTS       = main.o \
 		set_outbound_dialog.o \
 		set_inbound_dialog.o \
 		error_dialog.o \
+		qrc_button_image.o \
 		moc_widget.o \
 		moc_log_dialog.o \
 		moc_set_outbound_dialog.o \
@@ -125,6 +127,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../Firewall_control_v1/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -218,6 +221,7 @@ Makefile: ../Firewall_control_v1/Firewall_control_v1.pro /usr/lib/x86_64-linux-g
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -237,6 +241,7 @@ Makefile: ../Firewall_control_v1/Firewall_control_v1.pro /usr/lib/x86_64-linux-g
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../Firewall_control_v1/Firewall_control_v1.pro \
+		../Firewall_control_v1/button_image.qrc \
 		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
@@ -295,6 +300,7 @@ Makefile: ../Firewall_control_v1/Firewall_control_v1.pro /usr/lib/x86_64-linux-g
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -314,6 +320,7 @@ Makefile: ../Firewall_control_v1/Firewall_control_v1.pro /usr/lib/x86_64-linux-g
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 ../Firewall_control_v1/Firewall_control_v1.pro:
+../Firewall_control_v1/button_image.qrc:
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
@@ -331,6 +338,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../Firewall_control_v1/button_image.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Firewall_control_v1/widget.h ../Firewall_control_v1/log_dialog.h ../Firewall_control_v1/set_outbound_dialog.h ../Firewall_control_v1/set_inbound_dialog.h ../Firewall_control_v1/error_dialog.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../Firewall_control_v1/main.cpp ../Firewall_control_v1/widget.cpp ../Firewall_control_v1/log_dialog.cpp ../Firewall_control_v1/set_outbound_dialog.cpp ../Firewall_control_v1/set_inbound_dialog.cpp ../Firewall_control_v1/error_dialog.cpp $(DISTDIR)/
@@ -358,8 +366,14 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_button_image.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_button_image.cpp
+qrc_button_image.cpp: ../Firewall_control_v1/button_image.qrc \
+		/usr/lib/qt5/bin/rcc \
+		../Firewall_control_v1/image/buttons_PNG33.png
+	/usr/lib/qt5/bin/rcc -name button_image ../Firewall_control_v1/button_image.qrc -o qrc_button_image.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -431,7 +445,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -467,6 +481,9 @@ set_inbound_dialog.o: ../Firewall_control_v1/set_inbound_dialog.cpp ../Firewall_
 error_dialog.o: ../Firewall_control_v1/error_dialog.cpp ../Firewall_control_v1/error_dialog.h \
 		ui_error_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o error_dialog.o ../Firewall_control_v1/error_dialog.cpp
+
+qrc_button_image.o: qrc_button_image.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_button_image.o qrc_button_image.cpp
 
 moc_widget.o: moc_widget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_widget.o moc_widget.cpp
