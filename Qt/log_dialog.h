@@ -1,3 +1,4 @@
+#pragma once
 #ifndef LOG_DIALOG_H
 #define LOG_DIALOG_H
 

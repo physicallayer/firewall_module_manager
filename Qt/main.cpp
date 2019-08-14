@@ -1,6 +1,11 @@
 #include "widget.h"
 #include <QApplication>
 
+// RULE
+// [interface] [protocol(TCP|UDP)] [src_ip] [src_port] [dst_ip] [dst_port] [ACCEPT|DROP]
+// /etc/firewall/in.rule
+// /etc/firewall/out.rule
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

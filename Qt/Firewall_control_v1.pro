@@ -26,12 +26,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    log_dialog.cpp
+    log_dialog.cpp \
+    set_outbound_dialog.cpp \
+    set_inbound_dialog.cpp \
+    error_dialog.cpp
 
 HEADERS += \
         widget.h \
-    log_dialog.h
+    log_dialog.h \
+    set_outbound_dialog.h \
+    set_inbound_dialog.h \
+    error_dialog.h
 
 FORMS += \
         widget.ui \
-    log_dialog.ui
+    log_dialog.ui \
+    set_outbound_dialog.ui \
+    set_inbound_dialog.ui \
+    error_dialog.ui
