@@ -5,6 +5,7 @@ Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
+    ui->pb_load->setEnabled(false);
     ui->setupUi(this);
 }
 
@@ -42,6 +43,7 @@ void Widget::on_pb_setRule_clicked()
 {
     inboundD = new set_Inbound_Dialog(this);
     inboundD->show();
+    ui->pb_load->setEnabled(true);
 }
 
 void Widget::on_pb_getLog_clicked()
@@ -85,4 +87,23 @@ void Widget::on_pb_setRule_2_clicked()
 {
    outboundD = new set_Outbound_Dialog(this);
    outboundD->show();
+   ui->pb_load->setEnabled(true);
+}
+
+void Widget::on_pb_load_clicked() // LOAD
+{
+    FILE* fp1 = NULL;
+    if((fp1 = popen("sudo rmmod firewall.ko", "r")) == NULL){
+        perror("ERROR rmmod firewall.ko");
+        return ;
+    }
+    pclose(fp1);
+
+    FILE* fp2 = NULL;
+    if((fp2 = popen("sudo insmod firewall.ko", "r")) == NULL){
+        perror("ERROR insmod firewall.ko");
+        return ;
+    }
+    pclose(fp2);
+    ui->pb_load->setEnabled(false);
 }
