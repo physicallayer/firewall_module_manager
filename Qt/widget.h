@@ -34,6 +34,12 @@ private slots:
 
     void on_pb_setRule_clicked();
 
+    void on_pb_getRule_2_clicked();
+
+    void on_pb_clear_2_clicked();
+
+    void on_pb_setRule_2_clicked();
+
 private:
     Ui::Widget *ui;
 };
