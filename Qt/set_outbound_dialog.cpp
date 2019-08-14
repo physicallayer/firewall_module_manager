@@ -36,7 +36,7 @@ void set_Outbound_Dialog::on_pushButton_clicked()
         ui->label->setText("OFB");
         count++;
     }
-    fputs(interface, fp);
+    fputs(interface, fp); fputs(" ", fp);
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -51,7 +51,7 @@ void set_Outbound_Dialog::on_pushButton_clicked()
         ui->label_2->setText("OFB");
         count++;
     }
-    fputs(protocol, fp);
+    fputs(protocol, fp); fputs(" ", fp);
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
