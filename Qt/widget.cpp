@@ -5,8 +5,8 @@ Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
-    ui->pb_load->setEnabled(false);
     ui->setupUi(this);
+    ui->pb_load->setEnabled(false);
 }
 
 Widget::~Widget()
@@ -34,7 +34,7 @@ void Widget::on_pb_getRule_clicked()
             qstr = QString(buf);
             ui->list_Rule->insertItem(row, qstr);
         }
-
+        ui->pb_load->setEnabled(true);
         fclose(fp);
     }
 }
@@ -43,7 +43,7 @@ void Widget::on_pb_setRule_clicked()
 {
     inboundD = new set_Inbound_Dialog(this);
     inboundD->show();
-    ui->pb_load->setEnabled(true);
+    isE = true;
 }
 
 void Widget::on_pb_getLog_clicked()
@@ -78,7 +78,7 @@ void Widget::on_pb_getRule_2_clicked()
             qstr = QString(buf);
             ui->list_Rule2->insertItem(row, qstr);
         }
-
+        ui->pb_load->setEnabled(true);
         fclose(fp);
     }
 }
@@ -87,7 +87,7 @@ void Widget::on_pb_setRule_2_clicked()
 {
    outboundD = new set_Outbound_Dialog(this);
    outboundD->show();
-   ui->pb_load->setEnabled(true);
+   isE = true;
 }
 
 void Widget::on_pb_load_clicked() // LOAD

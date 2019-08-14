@@ -24,6 +24,7 @@ class Widget : public QWidget
 {
     Q_OBJECT
     error_Dialog* ED;
+    bool isE = false;
 
 public:
     explicit Widget(QWidget *parent = 0);
