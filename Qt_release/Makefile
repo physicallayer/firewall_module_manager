@@ -370,8 +370,7 @@ compiler_rcc_make_all: qrc_button_image.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_button_image.cpp
 qrc_button_image.cpp: ../Firewall_control_v1/button_image.qrc \
-		/usr/lib/qt5/bin/rcc \
-		../Firewall_control_v1/image/buttons_PNG33.png
+		/usr/lib/qt5/bin/rcc
 	/usr/lib/qt5/bin/rcc -name button_image ../Firewall_control_v1/button_image.qrc -o qrc_button_image.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -384,15 +383,16 @@ compiler_moc_header_make_all: moc_widget.cpp moc_log_dialog.cpp moc_set_outbound
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_widget.cpp moc_log_dialog.cpp moc_set_outbound_dialog.cpp moc_set_inbound_dialog.cpp moc_error_dialog.cpp
 moc_widget.cpp: ../Firewall_control_v1/log_dialog.h \
-		../Firewall_control_v1/set_inbound_dialog.h \
 		../Firewall_control_v1/error_dialog.h \
+		../Firewall_control_v1/set_inbound_dialog.h \
 		../Firewall_control_v1/set_outbound_dialog.h \
 		../Firewall_control_v1/widget.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/jamesj/QT_projects/Firewall_control_v1 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Firewall_control_v1/widget.h -o moc_widget.cpp
 
-moc_log_dialog.cpp: ../Firewall_control_v1/log_dialog.h \
+moc_log_dialog.cpp: ../Firewall_control_v1/error_dialog.h \
+		../Firewall_control_v1/log_dialog.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/jamesj/QT_projects/Firewall_control_v1 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Firewall_control_v1/log_dialog.h -o moc_log_dialog.cpp
@@ -451,20 +451,21 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 main.o: ../Firewall_control_v1/main.cpp ../Firewall_control_v1/widget.h \
 		../Firewall_control_v1/log_dialog.h \
-		../Firewall_control_v1/set_inbound_dialog.h \
 		../Firewall_control_v1/error_dialog.h \
+		../Firewall_control_v1/set_inbound_dialog.h \
 		../Firewall_control_v1/set_outbound_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Firewall_control_v1/main.cpp
 
 widget.o: ../Firewall_control_v1/widget.cpp ../Firewall_control_v1/widget.h \
 		../Firewall_control_v1/log_dialog.h \
-		../Firewall_control_v1/set_inbound_dialog.h \
 		../Firewall_control_v1/error_dialog.h \
+		../Firewall_control_v1/set_inbound_dialog.h \
 		../Firewall_control_v1/set_outbound_dialog.h \
 		ui_widget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widget.o ../Firewall_control_v1/widget.cpp
 
 log_dialog.o: ../Firewall_control_v1/log_dialog.cpp ../Firewall_control_v1/log_dialog.h \
+		../Firewall_control_v1/error_dialog.h \
 		ui_log_dialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o log_dialog.o ../Firewall_control_v1/log_dialog.cpp
 
